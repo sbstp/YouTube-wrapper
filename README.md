@@ -23,7 +23,7 @@ To create a youtube player, simply use the `Youtube(params)` function.
     * `buffering(player)` function called when the player is buffering. (Optional)
     * `cued(player)`
 
-**Example**
+**Example:**
 ```javascript
 Youtube({
     el: 'player',
@@ -33,7 +33,7 @@ Youtube({
         fs: 0,
         iv_load_policy: 3,
         loop: 0,
-        origin: 'http://simon.montmoinfo.org',
+        origin: 'http://example.com',
         rel: 0,
         showinfo: 0,
         suggestedQuality: 'hd720',
@@ -54,4 +54,48 @@ Youtube({
         }
     }
 });
+```
+
+### Playlist
+
+Playlist is a class to easily manage playlist: next, previous, seek, shuffle, loop, ...
+
+**new Playlist(boolean loop, array items)**
+Create a new playlist.
+```
+var p = new Playlist(true);
+```
+
+**Playlist.add(mixed ...)**
+Add an item to the playlist.  
+You may pass as many arguments as you wish.
+```
+p.add('a', 'b', 'c');
+```
+
+**Playlist.next()**
+Get the next item in the playlist.
+```
+p.next();
+// -> a
+```
+
+**Playlist.prev()**
+Get the prrevious item in the playlist.
+```
+p.prev();
+// -> c
+```
+
+**Playlist.pos()**
+Get the current position in the playlist.
+```
+p.pos();
+// -> 2
+```
+
+**Playlist.seek(int pos)**
+Seek to the position in the playlist.
+```
+p.seek(1);
 ```
