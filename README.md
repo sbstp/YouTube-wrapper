@@ -15,5 +15,9 @@ To create a youtube player, simply use the `Youtube(params)` function.
 * _height_: The player's height (Optional),
 * _playerVars_: The Youtube player's variables. ([More](https://developers.google.com/youtube/player_parameters)) (Optional)
 * _on_: An object with events attached to. (Optional)
-    * _ready_ function called when the player is ready. (Optional)
-    * _stateChange_ function called when the player's state changed. ([More](https://developers.google.com/youtube/iframe_api_reference#onStateChange)) (Optional)
+    * _ready(player)_ function called when the player is ready. (Optional)
+    * _stateChange(player)_ function called when the player's state changed. ([More](https://developers.google.com/youtube/iframe_api_reference#onStateChange)) (Optional)
+    * _playing(player)_ function called when the player starts playing. (Optional)
+    * _paused(player)_ function called when the player is paused. (Optional)
+    * `ended(player)` function called when the video ended. (Optional)
+    * `buffering(player)` function called when the player is buffering. (Optional)
