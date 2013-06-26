@@ -6,7 +6,7 @@ A wrapper around the YouTube iframe API. Easily embed and control youtube player
 ### Youtube
 
 To create a youtube player, simply use the `Youtube(params)` function.
-##params##  
+**params**
 * _el_: ID of the element where the youtube player will be embeded. (Required)
 * _videoId_: A youtube video ID. (Optional),
 * _width_: The player's width. (Optional),
