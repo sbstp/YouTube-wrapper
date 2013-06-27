@@ -60,42 +60,96 @@ Youtube({
 
 Playlist is a class to easily manage playlist: next, previous, seek, shuffle, loop, ...
 
-**new Playlist(boolean loop, array items)**
+**new Playlist(boolean loop[, array items])**  
 Create a new playlist.
 ```
 var p = new Playlist(true);
 ```
 
-**Playlist.add(mixed ...)**
+**Playlist.add(arguments)**  
 Add an item to the playlist.  
 You may pass as many arguments as you wish.
 ```
 p.add('a', 'b', 'c');
 ```
 
-**Playlist.next()**
+**Playlist.next()**  
 Get the next item in the playlist.
 ```
 p.next();
 // -> a
 ```
 
-**Playlist.prev()**
+**Playlist.prev()**  
 Get the prrevious item in the playlist.
 ```
 p.prev();
 // -> c
 ```
 
-**Playlist.pos()**
+**Playlist.pos()**  
 Get the current position in the playlist.
 ```
 p.pos();
 // -> 2
 ```
 
-**Playlist.seek(int pos)**
+**Playlist.seek(int pos)**  
 Seek to the position in the playlist.
 ```
 p.seek(1);
+```
+
+**Playlist.forEach(function callback[, object scope])**
+Loop through the items in the array  
+```
+p.forEach(function (item, position) {
+    console.log(position + ' -> ' + item);
+});
+```
+
+**Playlist.loop([boolean loop])**  
+If no argument is passed, return if the playlist is looping or not.  
+If an argument is passed, changed wether or not the playlist is looping.
+```
+p.loop(false);
+p.loop();
+// -> false
+```
+
+**Playlist.shuffle()**  
+Shuffle the elements in the list.
+```
+p.shuffle();
+```
+
+**Playlist.copy()**  
+```
+p.copy();
+// -> Playlist object
+```
+
+### License
+```
+The MIT License (MIT)
+
+Copyright (c) <2013> <Simon Bernier St-Pierre <sbernierstpierre@gmail.com>>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
 ```
