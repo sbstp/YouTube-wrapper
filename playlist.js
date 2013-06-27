@@ -99,7 +99,7 @@ THE SOFTWARE.
      * Get the position in the list.
      * @returns {int} Position.
      */
-    Playlist.prototype.pos = function (index) {
+    Playlist.prototype.pos = function () {
         return this._pos;
     };
 
