@@ -23,94 +23,94 @@ THE SOFTWARE.
 */
 
 (function () {
-	"use strict";
-	//==========================================================================
-	// Youtube
-	//==========================================================================
-	var scriptIncluded = false,
-		apiReady = false,
-		apiReadyFn = [];
-	
-	/**
-	 * @param {object} params Player parameters.
-	 *	el {string} required. ID of the element containing the player.
-	 *	videoId {string} optional,
-	 *	width {number} optional,
-	 *	height {number} optional,
-	 *	playerVars {object} optional (https://developers.google.com/youtube/player_parameters),
-	 *	on {object} optoinal,
-	 *		ready {function} optional,
-	 *		stateChange {function} optional,
-	 *		playing {function} optional,
-	 *		paused {function} optional,
-	 *		ended {function} optinal,
-	 *		buffering {function} optional,
-	 *		cued: {function} optional
-	 *	@return {void} Returns nothing. If you want the player handle, get it from the on.ready function.
-	 */
-	var Youtube = function (params) {
-		if (!scriptIncluded) {
-			var tag = document.createElement('script');
-			tag.src = "https://www.youtube.com/iframe_api";
-			var firstScriptTag = document.getElementsByTagName('script')[0];
-			firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-			scriptIncluded = true;
-		}
-		
-		var player;
-		params.on = params.on || {};
-		
-		function apiReadyCallback () {
-			player = new YT.Player(params.el, {
-				videoId: params.videoId,
-				width: params.width,
-				height: params.height,
-				playerVars: params.playerVars,
-				events: {
-					onReady: function () {
-						if (params.on === undefined) return;
-						if (params.on.ready) params.on.ready(player);
-					},
-					onStateChange: function (e) {
-						if (params.on === undefined) return;
-						if (params.on.stateChange) params.on.stateChange(player, e.data);
-						switch (e.data) {
-							case YT.PlayerState.PLAYING:
-								if (params.on.playing) params.on.playing(player);
-								break;
-							case YT.PlayerState.PAUSED:
-								if (params.on.paused) params.on.paused(player);
-								break;
-							case YT.PlayerState.ENDED:
-								if (params.on.ended) params.on.ended(player);
-								break;
-							case YT.PlayerState.BUFFERING:
-								if (params.on.buffering) params.on.buffering(player);
-								break;
-							case YT.PlayerState.CUED:
-								if (params.on.cued) params.on.cued(player);
-								break;
-						}
-					}
-				}
-			});
-		};
-		
-		if (!apiReady) {
-			apiReadyFn.push(apiReadyCallback);
-		} else {
-			apiReadyCallback();
-		}
-	};
-	
-	// when youtube script is done loading
-	window.onYouTubeIframeAPIReady = function () {
-		apiReady = true;
-		for (var i = 0; i < apiReadyFn.length; i++) {
-			if (apiReadyFn[i]) apiReadyFn[i]();
-		}
-	};
-	
-	// expose
-	window.Youtube = Youtube;
+    "use strict";
+    //==========================================================================
+    // Youtube
+    //==========================================================================
+    var scriptIncluded = false,
+        apiReady = false,
+        apiReadyFn = [];
+    
+    /**
+     * @param {object} params Player parameters.
+     *	el {string} required. ID of the element containing the player.
+     *	videoId {string} optional,
+     *	width {number} optional,
+     *	height {number} optional,
+     *	playerVars {object} optional (https://developers.google.com/youtube/player_parameters),
+     *	on {object} optoinal,
+     *		ready {function} optional,
+     *		stateChange {function} optional,
+     *		playing {function} optional,
+     *		paused {function} optional,
+     *		ended {function} optinal,
+     *		buffering {function} optional,
+     *		cued: {function} optional
+     *	@return {void} Returns nothing. If you want the player handle, get it from the on.ready function.
+     */
+    var Youtube = function (params) {
+        if (!scriptIncluded) {
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            scriptIncluded = true;
+        }
+        
+        var player;
+        params.on = params.on || {};
+        
+        function apiReadyCallback () {
+            player = new YT.Player(params.el, {
+                videoId: params.videoId,
+                width: params.width,
+                height: params.height,
+                playerVars: params.playerVars,
+                events: {
+                    onReady: function () {
+                        if (params.on === undefined) return;
+                        if (params.on.ready) params.on.ready(player);
+                    },
+                    onStateChange: function (e) {
+                        if (params.on === undefined) return;
+                        if (params.on.stateChange) params.on.stateChange(player, e.data);
+                        switch (e.data) {
+                            case YT.PlayerState.PLAYING:
+                                if (params.on.playing) params.on.playing(player);
+                                break;
+                            case YT.PlayerState.PAUSED:
+                                if (params.on.paused) params.on.paused(player);
+                                break;
+                            case YT.PlayerState.ENDED:
+                                if (params.on.ended) params.on.ended(player);
+                                break;
+                            case YT.PlayerState.BUFFERING:
+                                if (params.on.buffering) params.on.buffering(player);
+                                break;
+                            case YT.PlayerState.CUED:
+                                if (params.on.cued) params.on.cued(player);
+                                break;
+                        }
+                    }
+                }
+            });
+        };
+        
+        if (!apiReady) {
+            apiReadyFn.push(apiReadyCallback);
+        } else {
+            apiReadyCallback();
+        }
+    };
+    
+    // when youtube script is done loading
+    window.onYouTubeIframeAPIReady = function () {
+        apiReady = true;
+        for (var i = 0; i < apiReadyFn.length; i++) {
+            if (apiReadyFn[i]) apiReadyFn[i]();
+        }
+    };
+    
+    // expose
+    window.Youtube = Youtube;
 })();
