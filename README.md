@@ -1,7 +1,8 @@
 YouTube-wrapper
 ===============
 
-A wrapper around the YouTube iframe API. Easily embed and control youtube players.
+A wrapper around the YouTube iframe API. Easily embed and control youtube players.  
+Flash is probably required for most browsers. I am not sure if the iframe api supports HTML 5.
 
 ### Youtube
 

@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 (function () {
+    "use strict";
     //==========================================================================
     // Playlist
     //==========================================================================
@@ -170,14 +171,14 @@ THE SOFTWARE.
      */
     Playlist.prototype.copy = function () {
         var newlist = new Playlist();
-        newlist.loop(this.loop());
-        newlist.seek(this.pos());
         this.forEach(function (item) {
             newlist.add(item);
         });
+        newlist._loop = this.loop();
+        newlist._pos = this.pos();
         return newlist;
     }
     
-    // make public
+    // expose
     window.Playlist = Playlist;
 })();
